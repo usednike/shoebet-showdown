@@ -1,121 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shoe Bet Showdown</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 2em;
-      background-color: #f0f0f0;
-    }
-    button {
-      padding: 1em 2em;
-      font-size: 1.2em;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-    #startMenu, #quiz, #uploadForm {
-      display: none;
-      margin-top: 2em;
-    }
-  </style>
 </head>
 <body>
   <h1>Shoe Bet Showdown 👟</h1>
-
-  <div id="welcome">
-    <h2>Ben jij klaar om je schoenen te verliezen?</h2>
-    <p>Speel de quiz, zet je schoenen op het spel, en steun een goed doel.</p>
-    <button onclick="startIntro()">Start de uitdaging</button>
-  </div>
-
-  <div id="startMenu">
-    <p>Kies taal / Choose language:</p>
-    <select id="language">
-      <option value="nl">Nederlands</option>
-      <option value="en">English</option>
-    </select>
-    <p>Voer spelersnamen in:</p>
-    <input type="text" id="player1" placeholder="Speler 1" />
-    <input type="text" id="player2" placeholder="Speler 2" />
-    <br /><br />
-    <button onclick="startQuiz()">Start Quiz</button>
-  </div>
-
-  <div id="quiz">
-    <h2 id="questionTitle"></h2>
-    <div id="options"></div>
-  </div>
-
-  <div id="uploadForm">
-    <h3>Verloren? Upload je bewijs en doneer je schoenen 👟</h3>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSduu9HNMnYJSNVlhyXdZfGw2kMLnzzEZRjgJsxb8m8S5OH5SQ/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">Laden…</iframe>
-  </div>
-
-  <script>
-    let currentQuestion = 0;
-    let playerTurn = 0;
-    let scores = [0, 0];
-    const questions = [
-      { q: "Wat is de hoofdstad van Frankrijk?", options: ["Londen", "Parijs", "Madrid", "Rome"], answer: 1 },
-      { q: "Hoeveel is 3 x 4?", options: ["7", "12", "9", "14"], answer: 1 },
-      { q: "Welk dier zegt 'Moe'?", options: ["Koe", "Kat", "Geit", "Schaap"], answer: 0 }
-    ];
-
-    function startIntro() {
-      document.getElementById("welcome").style.display = "none";
-      document.getElementById("startMenu").style.display = "block";
-    }
-
-    function startQuiz() {
-      const p1 = document.getElementById("player1").value;
-      const p2 = document.getElementById("player2").value;
-      if (!p1 || !p2) return alert("Vul beide namen in!");
-      document.getElementById("startMenu").style.display = "none";
-      document.getElementById("quiz").style.display = "block";
-      showQuestion();
-    }
-
-    function showQuestion() {
-      if (currentQuestion >= questions.length) {
-        if (playerTurn === 0) {
-          playerTurn = 1;
-          currentQuestion = 0;
-          showQuestion();
-          return;
-        }
-        endGame();
-        return;
-      }
-
-      const q = questions[currentQuestion];
-      document.getElementById("questionTitle").innerText = `${playerTurn === 0 ? "Speler 1" : "Speler 2"}: ${q.q}`;
-      const opts = q.options.map((opt, i) => 
-        `<button onclick="checkAnswer(${i})">${opt}</button>`).join("<br>");
-      document.getElementById("options").innerHTML = opts;
-    }
-
-    function checkAnswer(i) {
-      if (i === questions[currentQuestion].answer) {
-        scores[playerTurn]++;
-      }
-      currentQuestion++;
-      showQuestion();
-    }
-
-    function endGame() {
-      document.getElementById("quiz").style.display = "none";
-      document.getElementById("uploadForm").style.display = "block";
-    }
-  </script>
+  <p>Inclusief Versla de Bedenker + inschrijfformulier en bewijs van verlies.</p>
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScrR00f3Osn4TdaUld-iP-o2CIhcsoak-PRlDhuBZwRbe4CRQ/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Laden…</iframe>
+  <img src="https://via.placeholder.com/300x200?text=Bedenker+zonder+schoenen" alt="Bedenker zonder schoenen" style="margin: 2em auto; display: block;">
 </body>
 </html>

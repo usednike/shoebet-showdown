@@ -1,13 +1,61 @@
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shoe Bet Showdown</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2em;
+      background-color: #f0f0f0;
+    }
+    button {
+      padding: 1em 2em;
+      font-size: 1.2em;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #startMenu {
+      display: none;
+      margin-top: 2em;
+    }
+  </style>
 </head>
 <body>
   <h1>Shoe Bet Showdown 👟</h1>
-  <p>Startpagina werkt! Klik op 'Start de uitdaging' om te beginnen.</p>
+
+  <div id="welcome">
+    <h2>Ben jij klaar om je schoenen te verliezen?</h2>
+    <p>Speel de quiz, zet je schoenen op het spel, en steun een goed doel.</p>
+    <button onclick="startIntro()">Start de uitdaging</button>
+  </div>
+
+  <div id="startMenu">
+    <p>Kies taal / Choose language:</p>
+    <select id="language">
+      <option value="nl">Nederlands</option>
+      <option value="en">English</option>
+    </select>
+    <p>Voer spelersnamen in:</p>
+    <input type="text" placeholder="Speler 1" />
+    <input type="text" placeholder="Speler 2" />
+    <br /><br />
+    <button>Start Quiz</button>
+  </div>
+
+  <script>
+    function startIntro() {
+      document.getElementById("welcome").style.display = "none";
+      document.getElementById("startMenu").style.display = "block";
+    }
+  </script>
 </body>
 </html>

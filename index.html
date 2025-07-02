@@ -1,82 +1,32 @@
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shoe Bet Showdown</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 2em;
-      background-color: #f0f0f0;
-    }
-    nav {
-      position: sticky;
-      top: 0;
-      background: white;
-      padding: 1em;
-      border-bottom: 2px solid #ddd;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 999;
-      display: flex;
-      justify-content: center;
-      gap: 2em;
-      font-size: 1.1em;
-    }
-    a {
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1em;
-    }
-    .gallery img {
-      width: 150px;
-      height: auto;
-      border-radius: 10px;
-      border: 3px solid #e00;
-    }
-  </style>
 </head>
 <body>
-  <nav>
-    <a href="#startMenu" style="color: #4CAF50;">🎮 Start Quiz</a>
-    <a href="#versla-de-bedenker" style="color: #e67e22;">🔥 Versla de Bedenker</a>
-    <a href="#wallOfShameAuto" style="color: #d9534f;">🧦 Wall of Shame</a>
-  </nav>
-
   <h1>Shoe Bet Showdown 👟</h1>
-  <div id="welcome">
-    <h2>Ben jij klaar om je schoenen te verliezen?</h2>
-    <button onclick="document.getElementById('startMenu').style.display = 'block'; this.parentElement.style.display = 'none';">Start de uitdaging</button>
-  </div>
-
-  <div id="startMenu" style="display:none;">
-    <p>Voer spelersnamen in:</p>
-    <input type="text" placeholder="Speler 1" />
-    <input type="text" placeholder="Speler 2" />
-    <br><br>
-    <button>Start Quiz</button>
-  </div>
-
-  <section id="versla-de-bedenker" style="margin-top: 4em; background: #fffbe6; padding: 2em; border-radius: 12px;">
-    <h2>🔥 Versla de Bedenker 🔥</h2>
-    <p>Denk jij dat je slimmer bent dan de man achter Shoe Bet Showdown? Daag hem uit.</p>
-    <p>✅ Elke week een live duel<br>✅ De verliezer doneert zijn schoenen</p>
-    <a href="#wallOfShameAuto"><button>Meld je aan</button></a>
+  <p>Deze ZIP bevat de digitale container, quizvragen, wall of shame en meer.</p>
+  <section id="digitale-container" style="margin-top: 4em; background: #e6f7ff; padding: 2em; border-radius: 12px;">
+    <h2>🗑️ Gooi je schoenen in de digitale container</h2>
+    <p>Ben jij een verliezer met lef? Klik hieronder en doneer symbolisch je schoenen.</p>
+    <button onclick="gooiSchoenen()">👟 Gooi je schoenen erin</button>
+    <div id="container-feedback" style="margin-top:1em; font-weight: bold; color: #31708f;"></div>
   </section>
 
   <section id="wallOfShameAuto" style="margin-top: 4em; background: #f3f3f3; padding: 2em; border-radius: 12px;">
-    <h2>🧦 Wall of Shame</h2>
-    <p>Hier zie je bewijs van echte verliezers.</p>
+    <h2>🧦 Live Wall of Shame</h2>
+    <p>Hier zie je bewijs van echte verliezers die hun schoenen hebben gedoneerd!</p>
     <div class="gallery">
-      <img src="wallofsock.jpg" alt="Sokkenfoto"/>
+      <img src="wallofsock.jpg" alt="Sokken ingezonden">
     </div>
   </section>
+
+  <script>
+    function gooiSchoenen() {
+      document.getElementById("container-feedback").innerText = "✅ Bedankt! Je schoenen zitten in de digitale container!";
+    }
+  </script>
 </body>
 </html>

@@ -7,7 +7,6 @@
 </head>
 <body>
   <h1>Shoe Bet Showdown 👟</h1>
-  <p>De volledige versie van de quizsite met timer, navigatie, Wall of Shame én digitale container is nu live!</p>
 
   <section id="digitale-container" style="margin-top: 4em; background: #e6f7ff; padding: 2em; border-radius: 12px;">
     <h2>🗑️ Gooi je schoenen in de digitale container</h2>
@@ -20,13 +19,15 @@
     <h2>🧦 Wall of Shame</h2>
     <p>Hier zie je bewijs van echte verliezers die hun schoenen hebben gedoneerd!</p>
     <div class="gallery">
-      <img src="wallofsock.jpg" alt="Sokken ingezonden">
+      <img src="wallofsock.jpg" alt="Schoenen van een verliezer" style="border: 3px solid #e00;">
     </div>
   </section>
 
   <script>
     function gooiSchoenen() {
-      document.getElementById("container-feedback").innerText = "✅ Bedankt! Je schoenen zitten in de digitale container!";
+      const code = 'SHOE-' + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById("container-feedback").innerHTML = 
+        `✅ Bedankt! Je schoenen zitten in de digitale container!<br>Plak deze code in je schoenen: <strong>${code}</strong>`;
     }
   </script>
 </body>

@@ -1,34 +1,144 @@
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shoe Bet Showdown</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2em;
+      background-color: #f0f0f0;
+    }
+    button {
+      padding: 0.7em 1.5em;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+    }
+    button:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+    .option {
+      display: block;
+      margin: 1em auto;
+      padding: 0.5em;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 80%;
+      max-width: 300px;
+    }
+    .option:hover {
+      background-color: #e0ffe0;
+    }
+    #quiz, #result {
+      margin-top: 2em;
+    }
+    #timer {
+      font-size: 1.5em;
+      color: #d9534f;
+      margin-top: 1em;
+    }
+    .gallery img {
+      width: 150px;
+      height: auto;
+      border-radius: 10px;
+      border: 2px solid #aaa;
+      margin: 1em;
+    }
+  </style>
 </head>
 <body>
+
   <h1>Shoe Bet Showdown 👟</h1>
 
-  <section id="digitale-container" style="margin-top: 4em; background: #e6f7ff; padding: 2em; border-radius: 12px;">
-    <h2>🗑️ Gooi je schoenen in de digitale container</h2>
-    <p>Ben jij een verliezer met lef? Klik hieronder en doneer symbolisch je schoenen.</p>
-    <button onclick="gooiSchoenen()">👟 Gooi je schoenen erin</button>
-    <div id="container-feedback" style="margin-top:1em; font-weight: bold; color: #31708f;"></div>
-  </section>
+  <div id="welcome">
+    <h2>Ben jij klaar om je schoenen te verliezen?</h2>
+    <button onclick="startGame()">Start de uitdaging</button>
+  </div>
 
-  <section id="wallOfShameAuto" style="margin-top: 4em; background: #f3f3f3; padding: 2em; border-radius: 12px;">
+  <div id="quiz" style="display:none;">
+    <h2 id="questionTitle"></h2>
+    <div id="options"></div>
+    <div id="timer"></div>
+  </div>
+
+  <div id="result" style="display:none;">
+    <h2 id="endText"></h2>
+  </div>
+
+  <section id="wall" style="margin-top: 4em; background: #f3f3f3; padding: 2em; border-radius: 12px;">
     <h2>🧦 Wall of Shame</h2>
-    <p>Hier zie je bewijs van echte verliezers die hun schoenen hebben gedoneerd!</p>
+    <p>Deze schoenen zijn echt gedoneerd. Respect!</p>
     <div class="gallery">
-      <img src="wallofsock.jpg" alt="Schoenen van een verliezer" style="border: 3px solid #e00;">
+      <img src="wallofsock.jpg" alt="Gedoneerde sokken">
+      <img src="IMG_1012.JPG" alt="Schoenen op de container">
     </div>
   </section>
 
   <script>
-    function gooiSchoenen() {
-      const code = 'SHOE-' + Math.floor(1000 + Math.random() * 9000);
-      document.getElementById("container-feedback").innerHTML = 
-        `✅ Bedankt! Je schoenen zitten in de digitale container!<br>Plak deze code in je schoenen: <strong>${code}</strong>`;
+    const questions = [
+      { q: "Wat is de hoofdstad van Frankrijk?", options: ["Londen", "Parijs", "Madrid", "Rome"], answer: 1 },
+      { q: "Hoeveel is 3 x 4?", options: ["7", "12", "9", "14"], answer: 1 },
+      { q: "Welk dier zegt 'Moe'?", options: ["Koe", "Kat", "Geit", "Schaap"], answer: 0 }
+    ];
+
+    let current = 0;
+    let score = 0;
+    let timer, timeLeft;
+
+    function startGame() {
+      document.getElementById("welcome").style.display = "none";
+      document.getElementById("quiz").style.display = "block";
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const q = questions[current];
+      document.getElementById("questionTitle").innerText = q.q;
+      document.getElementById("options").innerHTML = "";
+      q.options.forEach((opt, i) => {
+        const btn = document.createElement("button");
+        btn.className = "option";
+        btn.innerText = opt;
+        btn.onclick = () => checkAnswer(i);
+        document.getElementById("options").appendChild(btn);
+      });
+
+      timeLeft = 10;
+      document.getElementById("timer").innerText = "⏱️ Tijd: " + timeLeft + "s";
+      timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").innerText = "⏱️ Tijd: " + timeLeft + "s";
+        if (timeLeft === 0) {
+          clearInterval(timer);
+          checkAnswer(-1);
+        }
+      }, 1000);
+    }
+
+    function checkAnswer(choice) {
+      clearInterval(timer);
+      if (choice === questions[current].answer) score++;
+      current++;
+      if (current < questions.length) {
+        showQuestion();
+      } else {
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("result").style.display = "block";
+        document.getElementById("endText").innerText = "Quiz klaar! Je score: " + score + "/" + questions.length;
+      }
     }
   </script>
+
 </body>
 </html>
